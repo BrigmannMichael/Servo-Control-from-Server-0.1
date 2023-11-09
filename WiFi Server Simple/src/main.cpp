@@ -52,7 +52,8 @@ void loop(){
     Serial.println("New Client.");           // print a message out the serial port
     String currentLine = "";                // make a String to hold incoming data from the client
     while (client.connected()) {            // loop while the client's connected
-      if (client.available()) {             // if there's bytes to read from the client,
+      if (client.available()) 
+      {             // if there's bytes to read from the client,
         char c = client.read();             // read a byte, then
         Serial.write(c);                    // print it out the serial monitor
         if (c == '\n') {                    // if the byte is a newline character
@@ -89,28 +90,33 @@ void loop(){
         if (currentLine.endsWith("GET /L")) {
           digitalWrite(5, LOW);                // GET /L turns the LED off
         }
-        if (currentLine.endsWith("GET /S")) {
+        if (currentLine.endsWith("GET /S")) 
+        {
           digitalWrite(25, LOW);   
-          if (buttonState == LOW){
-    counter++;
-    delay(150);
+          if (buttonState == LOW)
+          {
+            counter++;
+            delay(150);
   
 
-  if(counter == 0)
-    servo.write (20);  // zero degrees
-  else if(counter == 1)
-    servo.write(90);
-  else if(counter == 2)
-    servo.write (150); 
-  else if(counter == 3)  
-    servo.write (180);
-  //else reset the counter to 0 which resets thr servo to 0 degrees
-  else
-   counter = 0;
-}
-        }}}
+            if(counter == 0)
+                servo.write (20);  // zero degrees
+            else if(counter == 1)
+                servo.write(90);
+            else if(counter == 2)
+                servo.write (150); 
+            else if(counter == 3)  
+                servo.write (180);
+                                                      //else reset the counter to 0 which resets the servo to 0 degrees  
+            else
+            counter = 0;
+            }
+        }
+      }
+    }
       
          // close the connection:
     client.stop();
     Serial.println("Client Disconnected.");
-    }}
+    }
+}
